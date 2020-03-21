@@ -25,7 +25,10 @@ module.exports = (sequelize, DataTypes) => {
     freezeTableName: true
   });
   users.associate = function(models) {
-    // associations can be defined here
+    users.belongsToMany(models["tasks"], {
+      through: "user_tasks",
+      foreignKey: "user_id"
+    });
   };
   return users;
 };
