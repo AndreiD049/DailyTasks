@@ -49,12 +49,15 @@ app.post("/login",
          passport.authenticate("local"),
          function(req, res) {
            res.status(200).json(req.user);
+          //  return;
          });
 
 
 // Always send index.html for unknown routes
 app.get("/*", function(req, res) {
+  console.log("sending index.html");
   res.sendFile(path.join(path.dirname(__dirname), "client", "build", "index.html"));
+  return;
 });
 
 // error handler
@@ -65,7 +68,7 @@ app.use(function(err, req, res, next) {
 
   // render the error page
   res.status(err.status || 500);
-  console.log("error");
+  // TODO: show 404 page;
   res.send("error");
 });
 
