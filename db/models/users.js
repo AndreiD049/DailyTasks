@@ -1,28 +1,40 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   const users = sequelize.define('users', {
-    firstName: {
+    first_name: {
       type: DataTypes.STRING,
       allowNull: false,
       field: 'first_name'
     },
-    lastName: {
+    last_name: {
       type: DataTypes.STRING,
       allowNull: false,
       field: 'last_name'
     },
-    birthDate: {
+    birth_date: {
       type: DataTypes.DATEONLY,
       allowNull: true,
       field: 'birth_date'
     },
-    employmentDate: {
+    employment_date: {
       type: DataTypes.DATEONLY,
       allowNull: true,
       field: 'employment_date'
+    },
+    created_at: {
+      type: DataTypes.DATE,
+      allowNull: false,
+      defaultValue: DataTypes.NOW
+    },
+    updated_at: {
+      type: DataTypes.DATE,
+      allowNull: false,
+      defaultValue: DataTypes.NOW
     }
   }, {
-    freezeTableName: true
+    freezeTableName: true,
+    createdAt: "created_at",
+    updatedAt: "updated_at"
   });
   users.associate = function(models) {
     users.belongsToMany(models["tasks"], {

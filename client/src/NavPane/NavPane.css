@@ -1,0 +1,17 @@
+.linkStyle {
+    text-decoration: none;
+    color: rgba(255,255,255,.5);
+}
+
+.linkStyle:hover {
+    text-decoration: none;
+    color: rgba(255,255,255, 1);
+}
+
+.authButton {
+    background-color: rgba(255,255,255, .5);
+}
+
+.authButton:hover {
+    background-color: rgba(255,255,255, .4);
+}

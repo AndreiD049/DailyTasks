@@ -7,14 +7,27 @@ module.exports = (sequelize, DataTypes) => {
     },
     login: {
       type: DataTypes.STRING,
-      allowNull: false 
+      allowNull: false,
+      unique: true,
     },
     password: {
       type: DataTypes.STRING,
       allowNull: false
-    } 
+    },
+    created_at: {
+      type: DataTypes.DATE,
+      allowNull: false,
+      defaultValue: DataTypes.NOW
+    },
+    updated_at: {
+      type: DataTypes.DATE,
+      allowNull: false,
+      defaultValue: DataTypes.NOW
+    }
   }, {
-    freezeTableName: true
+    freezeTableName: true,
+    createdAt: "created_at",
+    updatedAt: "updated_at"
   });
   user_credentials.associate = function(models) {
     // associations can be defined here

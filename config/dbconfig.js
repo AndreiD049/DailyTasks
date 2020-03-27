@@ -7,7 +7,7 @@ module.exports = {
     "database": "database_development",
     "host": path.resolve('db', 'data', 'data.db'),
     "dialect": "sqlite",
-    "operatorsAliases": false
+    "seederStorage": "json"
   },
   "test": {
     "username": "root",
@@ -15,7 +15,6 @@ module.exports = {
     "database": "database_test",
     "host": path.resolve('db', 'data', 'data.db'),
     "dialect": "mysql",
-    "operatorsAliases": false
   },
   "production": {
     "username": "root",
@@ -23,6 +22,5 @@ module.exports = {
     "database": "database_production",
     "host": path.resolve('db', 'data', 'data.db'), 
     "dialect": "mysql",
-    "operatorsAliases": false
   }
 }

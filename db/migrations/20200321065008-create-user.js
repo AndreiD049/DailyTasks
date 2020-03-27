@@ -8,6 +8,16 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
+      team_id: {
+        type: Sequelize.INTEGER,
+        allowNull: true,
+        references: {
+          model: "teams",
+          key: "id"
+        },
+        onDelete: "SET NULL",
+        onUpdate: "CASCADE"
+      },
       firstName: {
         type: Sequelize.STRING,
         allowNull: false,
@@ -26,17 +36,19 @@ module.exports = {
       employmentDate: {
         type: Sequelize.DATEONLY,
         allowNull: true,
-        field: 'employment_date'
+        field: 'employment_date',
       },
       createdAt: {
-        allowNull: false,
+        allowNull: true,
         type: Sequelize.DATE,
-        field: 'created_at'
+        field: 'created_at',
+        defaultValue: Sequelize.literal("CURRENT_TIMESTAMP")
       },
       updatedAt: {
-        allowNull: false,
+        allowNull: true,
         type: Sequelize.DATE,
-        field: 'updated_at'
+        field: 'updated_at',
+        defaultValue: Sequelize.literal("CURRENT_TIMESTAMP")
       }
     });
   },

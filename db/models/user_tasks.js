@@ -8,9 +8,21 @@ module.exports = (sequelize, DataTypes) => {
     task_id: {
       type: DataTypes.INTEGER,
       allowNull: false,
-    } 
+    },
+    created_at: {
+      type: DataTypes.DATE,
+      allowNull: false,
+      defaultValue: DataTypes.NOW
+    },
+    updated_at: {
+      type: DataTypes.DATE,
+      allowNull: false,
+      defaultValue: DataTypes.NOW
+    }
   }, {
-    freezeTableName: false
+    freezeTableName: false,
+    createdAt: "created_at",
+    updatedAt: "updated_at"
   });
   user_tasks.associate = function(models) {
     // associations can be defined here

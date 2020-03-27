@@ -5,9 +5,24 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull:false
     },
-    description: DataTypes.STRING
+    description: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    created_at: {
+      type: DataTypes.DATE,
+      allowNull: false,
+      defaultValue: DataTypes.NOW
+    },
+    updated_at: {
+      type: DataTypes.DATE,
+      allowNull: false,
+      defaultValue: DataTypes.NOW
+    }
   }, {
-    freezeTableName: true
+    freezeTableName: true,
+    createdAt: "created_at",
+    updatedAt: "updated_at"
   });
   tasks.associate = function(models) {
     tasks.belongsToMany(models["users"], {

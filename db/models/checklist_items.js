@@ -8,9 +8,21 @@ module.exports = (sequelize, DataTypes) => {
     user_task_id: {
       type: DataTypes.INTEGER,
       allowNull: true
+    },
+    created_at: {
+      type: DataTypes.DATE,
+      allowNull: false,
+      defaultValue: DataTypes.NOW
+    },
+    updated_at: {
+      type: DataTypes.DATE,
+      allowNull: false,
+      defaultValue: DataTypes.NOW
     }
   }, {
-    freezeTableName: true
+    freezeTableName: true,
+    createdAt: "created_at",
+    updatedAt: "updated_at"
   });
   checklist_items.associate = function(models) {
     // define relationship with 'tasks' table (checklist item is related to one task)

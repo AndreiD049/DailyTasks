@@ -1,7 +1,7 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
-  const statuses = sequelize.define('statuses', {
-    description: {
+  const teams = sequelize.define('teams', {
+    name: {
       type: DataTypes.STRING,
       allowNull: false
     },
@@ -20,8 +20,16 @@ module.exports = (sequelize, DataTypes) => {
     createdAt: "created_at",
     updatedAt: "updated_at"
   });
-  statuses.associate = function(models) {
+  teams.associate = function(models) {
     // associations can be defined here
+    teams.hasMany(models["users"], {
+      foreignKey: "team_id",
+      allowNull: true,
+    });
+    models["users"].belongsTo(teams, {
+      foreignKey: "team_id",
+      allowNull: true
+    })
   };
-  return statuses;
+  return teams;
 };
