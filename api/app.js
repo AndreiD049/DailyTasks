@@ -55,7 +55,6 @@ app.post("/login",
 
 // Always send index.html for unknown routes
 app.get("/*", function(req, res) {
-  console.log("sending index.html");
   res.sendFile(path.join(path.dirname(__dirname), "client", "build", "index.html"));
   return;
 });
