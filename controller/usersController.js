@@ -37,7 +37,7 @@ class UserController
         }
     }
 
-    // Function user by passport js
+    // Function used by passport js
     async checkUserPassword(username, password, cb) {
         try {
             let user_creds = await this.getUserCreds(username);

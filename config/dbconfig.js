@@ -10,11 +10,12 @@ module.exports = {
     "seederStorage": "json"
   },
   "test": {
-    "username": "root",
-    "password": null,
+    "username": process.env.DB_USERNAME,
+    "password": process.env.DB_PASSWORD,
     "database": "database_test",
-    "host": path.resolve('db', 'data', 'data.db'),
-    "dialect": "mysql",
+    "host": path.resolve('db', 'data', 'data_test.db'),
+    "logging": false,
+    "dialect": "sqlite"
   },
   "production": {
     "username": "root",

@@ -21,19 +21,18 @@ router.post("/add", async function(req, res) {
 /* 
 API call to check if user is logged in.
 Returns status 200 on success.
-Returns status 401 (Unauthorized) on failure
+Returns status 200 on failure
 */
 router.post("/check/login", async function(req, res) {
-  console.log("Checking user logged in");
   if (req.user) {
     res.status(200).json(req.user);
   } else {
-    console.log("User not found");
     res.status(200).json({error: "User session not found"});
   }
 });
 
 router.post("/logout", function(req, res) {
+  console.log(req.user);
   if (req.session) {
     // destroy the session
     req.session.destroy(function(err) {
@@ -43,7 +42,7 @@ router.post("/logout", function(req, res) {
         res.status(200).end();
       }
     });
-  }
+  } 
 });
 
 router.get("/current", async function(req, res) {

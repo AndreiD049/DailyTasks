@@ -21,25 +21,23 @@ const usersRouter = require("./routes/users");
 
 const app = express();
 
-// app.use(cors());
-app.use(bodyParser.urlencoded({
-  extended: true
-}))
+app.use(cors());
+app.use("/static", express.static(path.join(__dirname, "public")));
+app.use(express.static(path.join(path.dirname(__dirname), "client", "build")));
+app.use(cookieParser());
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(session({ 
   secret: "development",
   resave: false,
-  saveUninitialized: false,
+  saveUninitialized: true
 }));
 app.use(passport.initialize());
 app.use(passport.session());
-app.use(bodyParser.json());
 app.use(upload.array());
 app.use(logger("dev"));
 app.use(express.json());
-app.use(cookieParser());
 app.use(express.urlencoded({ extended: false }));
-app.use("/static", express.static(path.join(__dirname, "public")));
-app.use(express.static(path.join(path.dirname(__dirname), "client", "build")));
 
 /* START API ROUTES */
 app.use("/users", usersRouter);
@@ -49,14 +47,12 @@ app.post("/login",
          passport.authenticate("local"),
          function(req, res) {
            res.status(200).json(req.user);
-          //  return;
          });
 
 
 // Always send index.html for unknown routes
 app.get("/*", function(req, res) {
   res.sendFile(path.join(path.dirname(__dirname), "client", "build", "index.html"));
-  return;
 });
 
 // error handler
