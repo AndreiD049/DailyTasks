@@ -32,8 +32,7 @@ router.post("/check/login", async function(req, res) {
 });
 
 router.post("/logout", function(req, res) {
-  console.log(req.user);
-  if (req.session) {
+  if (req.session && req.user) {
     // destroy the session
     req.session.destroy(function(err) {
       if (err) {
@@ -42,6 +41,8 @@ router.post("/logout", function(req, res) {
         res.status(200).end();
       }
     });
+  } else {
+    res.status(500).json({error: "User not logged in"});
   } 
 });
 
