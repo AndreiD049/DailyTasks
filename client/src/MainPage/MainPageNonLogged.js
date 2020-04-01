@@ -1,4 +1,5 @@
 import React from "react";
+import {Link} from "react-router-dom";
 import "./MainPage.css";
 
 class MainPageNonLogged extends React.Component {
@@ -11,9 +12,9 @@ class MainPageNonLogged extends React.Component {
                         <div className="card productDescriptionCard">
                             <div className="card-body text-white">
                                 Sample description of application:
-                                <div className="mt-5">
-                                    <button className="btn btn-dark" onClick={this.onLogOut}>Log Out</button>
-                                    <button className="btn btn-dark ml-2" onClick={this.onLogOut}>Log Out</button>
+                                <div className="container mt-5">
+                                    <Link to="/login"><button className="btn btn-dark" onClick={this.onLogOut}>Log In</button></Link>
+                                    <Link to="/register"><button className="btn btn-dark ml-2" onClick={this.onLogOut}>Sign In</button></Link>
                                 </div>
                             </div>
                         </div>
