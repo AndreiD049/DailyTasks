@@ -1,0 +1,11 @@
+.mainPageLoggedHeader {
+    background-image: url(./logo.jpg);
+    background-position: left;
+    background-size: cover;
+    min-height: 50%;
+}
+
+.productDescriptionCard {
+    background-color: rgba(255, 255, 255, 0.7);
+    text-shadow: #000 1px 1px 1px;
+}

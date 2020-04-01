@@ -33,6 +33,7 @@ class UserController
             });
             return user;
         } catch (e) {
+            console.log(e);
             return null;
         }
     }

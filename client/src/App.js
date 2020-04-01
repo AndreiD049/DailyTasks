@@ -8,7 +8,8 @@ import {
 import LoginPage from "./LoginPage/LoginPage";
 import RegisterPage from "./RegisterPage/RegisterPage";
 import NavPage from "./NavPane/NavPane";
-import MainPage from "./MainPage/MainPage";
+import MainPageLogged from "./MainPage/MainPageLogged";
+import MainPageNonLogged from "./MainPage/MainPageNonLogged";
 import SettingsPage from "./Settings/SettingsPage";
 import LoginContext from "./LoginContext/LoginContext";
 
@@ -47,7 +48,7 @@ class App extends React.Component {
                   <SettingsPage loginContext={this.state.loginContext}/>
                 </Route>
                 <Route path="/">
-                  <MainPage/>
+                  {this.state.loginContext.logged ? <MainPageLogged/> : <MainPageNonLogged/>} 
                 </Route>
               </Switch>
             </div>

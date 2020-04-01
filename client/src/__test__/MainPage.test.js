@@ -2,7 +2,7 @@ import React from "react";
 import {render, unmountComponentAtNode} from "react-dom";
 import {act} from "react-dom/test-utils";
 
-import MainPage from "../MainPage/MainPage";
+import MainPageLogged from "../MainPage/MainPageLogged";
 
 // declare the container here so we can place our dom element in it
 let container = null;
@@ -20,7 +20,7 @@ afterEach(() => {
 it("should just render", () => {
     act(() => {
         // render the MainPage in the container
-        render(<MainPage />, container);
+        render(<MainPageLogged />, container);
     });
     expect(container.textContent).toBe("I am the main page");
 });
