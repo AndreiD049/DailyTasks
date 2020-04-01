@@ -50,8 +50,8 @@ class UserInfoSection extends React.Component {
                                         Hi {this.props.loginContext.user_info.login || "Guest"}
                                     </button>
                                     <div className="dropdown-menu" aria-labelledby="dropDownMenuButton">
-                                        <Link to="/settings" className="dropdown-item btn btn-link authButton">Settings</Link>
-                                        <button className="dropdown-item btn btn-link authButton" onClick={this.onLogOut}>Log Out</button>
+                                        <Link id="settingsButton" to="/settings" className="dropdown-item btn btn-link authButton">Settings</Link>
+                                        <button id="logOutButton" className="dropdown-item btn btn-link authButton" onClick={this.onLogOut}>Log Out</button>
                                     </div>
                                 </RedirectionManager>
                             </div>);

@@ -7,7 +7,7 @@ class NavPane extends React.Component {
     render() {
         return (
             <nav className="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
-                <button className="navbar-brand btn btn-link"><Link className="linkStyle" to="/">DailyTasks</Link></button>
+                <button id="brandLogo" className="navbar-brand btn btn-link"><Link className="linkStyle" to="/">DailyTasks</Link></button>
                 <button className="navbar-toggler" type="button" data-toggle="collapse"
                         data-target="#navbarDefault" aria-controls="navbarsExampleDefault"
                         aria-expanded="false" aria-label="Toggle navigation">

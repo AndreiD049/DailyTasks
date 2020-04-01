@@ -65,7 +65,7 @@ module.exports = {
 
   // An array of directory names to be searched recursively up from the requiring module's location
   // moduleDirectories: [
-  //   "node_modules"
+  //   "api"
   // ],
 
   // An array of file extensions your modules use
@@ -82,7 +82,7 @@ module.exports = {
   // moduleNameMapper: {},
 
   // An array of regexp pattern strings, matched against all module paths before considered 'visible' to the module loader
-  // modulePathIgnorePatterns: [],
+modulePathIgnorePatterns: ["\\client\\"],
 
   // Activates notifications for test results
   // notify: false,

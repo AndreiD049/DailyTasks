@@ -14,7 +14,8 @@ module.exports = {
     "password": process.env.DB_PASSWORD,
     "database": "database_test",
     "host": path.resolve('db', 'data', 'data_test.db'),
-    "dialect": "sqlite"
+    "dialect": "sqlite",
+    "logging": false,
   },
   "production": {
     "username": "root",
