@@ -19,12 +19,12 @@
     "passport": "^0.4.1",
     "passport-local": "^1.0.0",
     "sequelize": "^5.21.5",
-    "sequelize-cli": "^5.5.1",
     "sqlite3": "^4.1.1"
   },
   "devDependencies": {
     "@types/jest": "^25.1.4",
     "create-react-app": "^3.4.1",
+    "sequelize-cli": "^5.5.1",
     "cross-env": "^7.0.2",
     "express-generator": "^4.16.1",
     "jest": "^25.2.4",
