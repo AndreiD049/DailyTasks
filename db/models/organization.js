@@ -22,11 +22,11 @@ module.exports = (sequelize, DataTypes) => {
   });
   organizations.associate = function(models) {
     // One to Many relationship (organisation has many teams)
-    organizations.hasMany(models["teams"], {
+    organizations.hasMany(models["users"], {
       foreignKey: "organization_id",
       allowNull: false,
     });
-    models["teams"].belongsTo(organizations, {
+    models["users"].belongsTo(organizations, {
       foreignKey: "organization_id",
       allowNull: false,
     })

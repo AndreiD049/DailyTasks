@@ -48,7 +48,9 @@ class App extends React.Component {
                   <SettingsPage loginContext={this.state.loginContext}/>
                 </Route>
                 <Route path="/">
-                  {this.state.loginContext.logged ? <MainPageLogged/> : <MainPageNonLogged/>} 
+                  {this.state.loginContext.logged === true ? <MainPageLogged loginContext={this.state.loginContext}/> 
+                                                           : this.state.loginContext.logged === false ? <MainPageNonLogged/> 
+                                                                                                      : null} 
                 </Route>
               </Switch>
             </div>

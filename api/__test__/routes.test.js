@@ -4,6 +4,7 @@ const app = require("../app");
 let agent;
 
 beforeAll(() => {
+    // set up the agent so the tests share the same session
     agent = request.agent(app);
 })
 

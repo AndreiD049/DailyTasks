@@ -8,6 +8,16 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
+      organization_id: {
+        type: Sequelize.INTEGER,
+        allowNull: true,
+        references: {
+          model: "organizations",
+          key: "id"
+        },
+        onDelete: "CASCADE",
+        onUpdate: "CASCADE",
+      },
       team_id: {
         type: Sequelize.INTEGER,
         allowNull: true,

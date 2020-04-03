@@ -21,19 +21,17 @@ class UserController
     async getUserById(id) {
         try {
             let user = await this.model.findByPk(id, {
-                raw: true,
                 include: [{
                     model: this.db.user_credentials,
-                    as: "user_credential",
-                    attributes: [],
-                }],
-                attributes: {
-                    include: ["user_credential.login"]
-                },
+                    attributes: ["login"],
+                }, {
+                    model: this.db.teams,
+                }, {
+                    model: this.db.organizations
+                }]
             });
             return user;
         } catch (e) {
-            console.log(e);
             return null;
         }
     }
@@ -64,37 +62,28 @@ class UserController
     }
 
     async deserializeUser(id, cb) {
-        let user = await this.model.findByPk(id, {
-            raw: true,
-            include: [{
-                model: this.db.user_credentials,
-                as: "user_credential",
-                attributes: [],
-            }],
-            attributes: {
-                include: ["user_credential.login"]
-            },
-        });
+        let user = await this.getUserById(id); 
         cb(null, user);
     }
 
-    async createUser(options) {
+    async createUser(data) {
         // create transaction
-        const t = await this.db.sequelize.transaction();
+        const transaction = await this.db.sequelize.transaction();
 
         try {
-            const user = await this.model.create(options, { transaction: t });
+            const user = await this.model.create(data, { transaction: transaction });
             // add user id to the form data
-            options.user_id = user.id;
-            this.checkPasswordIntegrity(options.password, options.r_password);
+            data.user_id = user.id;
+            this.checkPasswordIntegrity(data.password, data.r_password);
             // hash the password
-            options.password = await this.getHashedPassword(options.password);
-            const credentuals = await this.db.user_credentials.create(options, { transaction: t });
+            data.password = await this.getHashedPassword(data.password);
+            // create the user credentials
+            await this.db.user_credentials.create(data, { transaction: transaction });
             // all created successfully, commit
-            await t.commit();
+            await transaction.commit();
         } catch (e) {
             console.log(`Error catched ${e}`);
-            t.rollback();
+            transaction.rollback();
             throw e;
         }
     }

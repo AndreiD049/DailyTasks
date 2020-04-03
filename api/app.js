@@ -18,6 +18,7 @@ passport.serializeUser(controller.users.serializeUser);
 passport.deserializeUser(controller.users.deserializeUser);
 
 const usersRouter = require("./routes/users");
+const orgRouter = require("./routes/organizations");
 
 const app = express();
 
@@ -41,6 +42,7 @@ app.use(express.urlencoded({ extended: false }));
 
 /* START API ROUTES */
 app.use("/users", usersRouter);
+app.use("/organizations", orgRouter);
 /* END API ROUTES */
 
 app.post("/login",

@@ -34,6 +34,18 @@ class UserInfoSection extends React.Component {
         }
     }
 
+    getLogin() {
+        console.log(this.props.loginContext);
+        if (this.props.loginContext && 
+            this.props.loginContext.user_info && 
+            this.props.loginContext.user_info.user_credential &&
+            this.props.loginContext.user_info.user_credential.login) {
+            return this.props.loginContext.user_info.user_credential.login;
+        } else {
+            return "Unknown username";
+        }
+    }
+
     render() {
         if (this.props.loginContext.logged === null) {
             // We didn't even check if the user is login yet (what were we doing?)
@@ -47,7 +59,7 @@ class UserInfoSection extends React.Component {
             displayItem = (<div className="dropdown">
                                 <RedirectionManager redirection={this.state.redirection}>
                                     <button id="dropDownMenuButton" className="h4 btn btn-link linkStyle dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        Hi {this.props.loginContext.user_info.login || "Guest"}
+                                        Hi {this.getLogin()}
                                     </button>
                                     <div className="dropdown-menu" aria-labelledby="dropDownMenuButton">
                                         <Link id="settingsButton" to="/settings" className="dropdown-item btn btn-link authButton">Settings</Link>
