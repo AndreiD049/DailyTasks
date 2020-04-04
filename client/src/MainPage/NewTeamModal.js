@@ -3,7 +3,7 @@ import Modal from "../Modal/Modal";
 import RedirectionManager from "../RedirectionManager/RedirectionManager";
 import { formValidator, FormErrorComponent } from "../FormValidator";
 
-class NewOrgModal extends React.Component {
+class NewTeamModal extends React.Component {
 
     constructor(props) {
         super(props);
@@ -55,9 +55,9 @@ class NewOrgModal extends React.Component {
             return;
         }
         try {
-            const formData = new FormData(document.getElementById("newOrgForm"));
+            const formData = new FormData(document.getElementById("newTeamForm"));
             if (this.props.loginContext && this.props.loginContext.user_info && this.props.loginContext.user_info.id) {
-                let response = await fetch("/organizations/add", {
+                let response = await fetch("/teams/add", {
                     method: "POST",
                     body: formData
                 });
@@ -76,14 +76,15 @@ class NewOrgModal extends React.Component {
     }
 
     render() {
+        console.log("called");
         const title = (
-            <h5>Create new Organisation</h5>
+            <h5>Create new Team</h5>
         );
         const body = (
-            <form id="newOrgForm">
+            <form id="newTeamForm">
                 <div className="form-group">
                     <label htmlFor="newOrgName">Name</label>
-                    <input required name="name" type="text" value={this.state.formdata.name.value} className="form-control" id="newOrgName" aria-describedby="New Organization name" onChange={this.handleChange}/>
+                    <input required name="name" type="text" value={this.state.formdata.name.value} className="form-control" id="newTeamName" aria-describedby="New Team name" onChange={this.handleChange}/>
                     <FormErrorComponent formdata={this.state.formdata}/>
                 </div>
             </form>
@@ -101,4 +102,4 @@ class NewOrgModal extends React.Component {
     }
 }
 
-export default NewOrgModal;
+export default NewTeamModal;
