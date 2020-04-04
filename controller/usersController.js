@@ -35,6 +35,16 @@ class UserController
             return null;
         }
     }
+    
+    async setUserOrganization(id, org_id) {
+        try {
+            const user = await this.getUserById(id);
+            user.organization_id = org_id;
+            user.save();
+        } catch (e) {
+            return false;
+        }
+    }
 
     // Function used by passport js
     async checkUserPassword(username, password, cb) {

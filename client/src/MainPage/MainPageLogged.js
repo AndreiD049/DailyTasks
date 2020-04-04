@@ -1,5 +1,6 @@
 import React from "react";
 import {Redirect} from "react-router-dom";
+import NewOrgModal from "./NewOrgModal";
 
 class MainPageLogged extends React.Component {
 
@@ -20,7 +21,7 @@ class MainPageLogged extends React.Component {
                         <h5 className="card-title text-danger">Missing Organisation</h5>
                         <p className="card-text py-3">You are not a part of an organization yet. You can create your own organization and add other people to it. People within an organization 
                         can create different teams and collaborate more efficiently. If you know your organization is already created you can ask for invitation (you should know the username of the organization owner).</p>
-                        <button className="btn btn-dark mr-3">Create your own</button>
+                        <button className="btn btn-dark mr-3" data-toggle="modal" data-target="#newOrgModal">Create your own</button>
                         <span>or</span>
                         <button className="btn btn-dark ml-3">Ask for invitation</button>
                     </div>
@@ -47,6 +48,7 @@ class MainPageLogged extends React.Component {
         }
         return (
             <div className="container">
+                <NewOrgModal id="newOrgModal" loginContext={this.props.loginContext}/>
                 <div className="row">
                     <div className="col-sm">
                         <div className="card">

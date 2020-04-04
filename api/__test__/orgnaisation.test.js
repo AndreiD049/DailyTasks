@@ -11,7 +11,7 @@ beforeAll(() => {
 describe("Testing organisation related API", () => {
     it("should create a new organisation", async () => {
         let res = await agent
-            .post('/organizations/add')
+            .post('/organizations/add/1')
             .send({
                 name: "Evil. inc"
             });
@@ -23,7 +23,7 @@ describe("Testing organisation related API", () => {
     */
     it("should fail to create an organisation without a name", async () => {
         let res = await agent
-            .post("/organizations/add")
+            .post("/organizations/add/1")
             .send({}); // sending empty object
         expect(res.statusCode).toBe(400); // Bad request
     });

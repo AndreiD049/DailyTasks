@@ -3,15 +3,7 @@ import {render, unmountComponentAtNode} from "react-dom";
 import {Router, MemoryRouter, BrowserRouter} from "react-router-dom";
 import {act} from "react-dom/test-utils";
 
-import MainPageLogged from "../MainPage/MainPageLogged";
-
-let fakeLoginContext = {
-    checkLogin: jest.fn(),
-    logged: true,
-    user_info: {
-        organisation: null,
-    }
-}
+import NewOrgModal from "../MainPage/NewOrgModal";
 
 // declare the container here so we can place our dom element in it
 let container = null;
@@ -26,10 +18,9 @@ afterEach(() => {
     container = null;
 });
 
-it("should just render", () => {
+it("should render with correct id", () => {
     act(() => {
-        // render the MainPage in the container
-        render(<BrowserRouter><MainPageLogged loginContext={fakeLoginContext}/></BrowserRouter>, container);
+        render(<NewOrgModal id="someRandomId"/>, container);
     });
-    expect(container.textContent).toMatch(/.*Missing organisation.*/i);
+    expect(container.querySelector("#someRandomId")).not.toBeNull();
 });

@@ -49,7 +49,9 @@ it("should return buttons 'Log in' and 'Sign up'", () => {
 it("should return 'Hi user' as if user is logged in", () => {
     act(() => {
         fakeLoginContext.logged = true;
-        fakeLoginContext.user_info = { login: "User123" };
+        fakeLoginContext.user_info = { 
+            user_credential: { login: "User123" }    
+        };
         render(<BrowserRouter><UserInfoSection loginContext={fakeLoginContext}/></BrowserRouter>, container);
     });
     expect(container.querySelector("#dropDownMenuButton").textContent).toBe("Hi User123");
@@ -57,9 +59,11 @@ it("should return 'Hi user' as if user is logged in", () => {
 
 it("should call onLogout when clicking the button", () => {
     act(() => {
-        const elem = (<UserInfoSection loginContext={fakeLoginContext}/>);
         fakeLoginContext.logged = true;
-        fakeLoginContext.user_info = { login: "User123" };
+        fakeLoginContext.user_info = { 
+            user_credential: { login: "User123" }    
+        };
+        const elem = (<UserInfoSection loginContext={fakeLoginContext}/>);
         render(<BrowserRouter>{elem}</BrowserRouter>, container);
     });
 

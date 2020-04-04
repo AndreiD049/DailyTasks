@@ -35,14 +35,13 @@ class UserInfoSection extends React.Component {
     }
 
     getLogin() {
-        console.log(this.props.loginContext);
         if (this.props.loginContext && 
             this.props.loginContext.user_info && 
             this.props.loginContext.user_info.user_credential &&
             this.props.loginContext.user_info.user_credential.login) {
             return this.props.loginContext.user_info.user_credential.login;
         } else {
-            return "Unknown username";
+            return "Unknown";
         }
     }
 

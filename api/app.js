@@ -1,11 +1,11 @@
 const express = require("express");
-// const cookieParser = require("cookie-parser");
+const cookieParser = require("cookie-parser");
 const path = require("path");
 const bodyParser = require("body-parser");
 const multer = require("multer");
 const upload = multer();
-// const logger = require("morgan");
-// const cors = require("cors");
+const logger = require("morgan");
+const cors = require("cors");
 const session = require("express-session");
 const controller = require("../controller");
 const passport = require("passport");
@@ -22,10 +22,10 @@ const orgRouter = require("./routes/organizations");
 
 const app = express();
 
-// app.use(cors());
+app.use(cors());
 app.use("/static", express.static(path.join(__dirname, "public")));
 app.use(express.static(path.join(path.dirname(__dirname), "client", "build")));
-// app.use(cookieParser());
+app.use(cookieParser());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(session({ 
@@ -36,7 +36,7 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(upload.array());
-// app.use(logger("dev"));
+app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 

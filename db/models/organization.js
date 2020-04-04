@@ -25,10 +25,14 @@ module.exports = (sequelize, DataTypes) => {
     organizations.hasMany(models["users"], {
       foreignKey: "organization_id",
       allowNull: false,
+      onDelete: "SET NULL",
+      onUpdate: "CASCADE",
     });
     models["users"].belongsTo(organizations, {
       foreignKey: "organization_id",
       allowNull: false,
+      onDelete: "SET NULL",
+      onUpdate: "CASCADE",
     })
   };
   return organizations;

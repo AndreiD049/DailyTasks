@@ -4,7 +4,9 @@ const controller = require("../../controller");
 
 router.post("/add", async function(req, res) {
     try {
-        await controller.organizations.createOrganization(req.body);
+        console.log(req.body);
+        const org = await controller.organizations.createOrganization(req.body);
+        await controller.users.setUserOrganization(req.user.id, org.id)
         // if above function ran, we're fine
         res.status(200).json({message: "Organization created."}); 
     } catch (e) {
