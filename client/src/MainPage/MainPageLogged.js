@@ -4,6 +4,31 @@ import NewOrgModal from "./NewOrgModal";
 
 class MainPageLogged extends React.Component {
 
+    constructor(props) {
+        super(props);
+        this.state = {
+            newOrgModal: false,
+            newTeamModal: false,
+            inviteOrgModal: false,
+            inviteTeamModal: false
+        }
+
+        // Bindings
+        this.handleShowModal = this.handleShowModal.bind(this);
+        this.handleCloseModal = this.handleCloseModal.bind(this);
+    }
+
+    handleCloseModal(modalName) {
+        this.setState({
+            [modalName]: false,
+            });
+    }
+
+    handleShowModal(modalName) {
+        this.setState({
+            [modalName]: true,
+        })
+    }
 
     render() {
         let teamContent;
@@ -21,7 +46,7 @@ class MainPageLogged extends React.Component {
                         <h5 className="card-title text-danger">Missing Organisation</h5>
                         <p className="card-text py-3">You are not a part of an organization yet. You can create your own organization and add other people to it. People within an organization 
                         can create different teams and collaborate more efficiently. If you know your organization is already created you can ask for invitation (you should know the username of the organization owner).</p>
-                        <button className="btn btn-dark mr-3" data-toggle="modal" data-target="#newOrgModal">Create your own</button>
+                        <button className="btn btn-dark mr-3" onClick={() => { this.handleShowModal("newOrgModal") }}>Create your own</button>
                         <span>or</span>
                         <button className="btn btn-dark ml-3">Ask for invitation</button>
                     </div>
@@ -48,7 +73,7 @@ class MainPageLogged extends React.Component {
         }
         return (
             <div className="container">
-                <NewOrgModal id="newOrgModal" loginContext={this.props.loginContext}/>
+                <NewOrgModal id="newOrgModal" show={this.state.newOrgModal} handleClose={() => { this.handleCloseModal("newOrgModal") }} loginContext={this.props.loginContext}/>
                 <div className="row">
                     <div className="col-sm">
                         <div className="card">

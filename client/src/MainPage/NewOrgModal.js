@@ -1,7 +1,7 @@
 import React from "react";
-import Modal from "../Modal/Modal";
 import RedirectionManager from "../RedirectionManager/RedirectionManager";
 import { formValidator, FormErrorComponent } from "../FormValidator";
+import {Modal} from "react-bootstrap";
 
 class NewOrgModal extends React.Component {
 
@@ -63,8 +63,6 @@ class NewOrgModal extends React.Component {
                 });
             if (response.ok) {
                 // close the modal
-                // TODO: rewrite this hack without JQuery
-                window.$(`#${this.props.id}`).modal("hide");
                 this.props.loginContext.checkLogin();
             }
             } else {
@@ -76,27 +74,31 @@ class NewOrgModal extends React.Component {
     }
 
     render() {
-        const title = (
-            <h5>Create new Organisation</h5>
-        );
-        const body = (
-            <form id="newOrgForm">
-                <div className="form-group">
-                    <label htmlFor="newOrgName">Name</label>
-                    <input required name="name" type="text" value={this.state.formdata.name.value} className="form-control" id="newOrgName" aria-describedby="New Organization name" onChange={this.handleChange}/>
-                    <FormErrorComponent formdata={this.state.formdata}/>
-                </div>
-            </form>
-        );
-        const footer = (
-            <span>
-                <button type="button" className="btn btn-secondary mr-1" data-dismiss="modal">Close</button>
-                <button type="button" className="btn btn-dark" onClick={this.handleSubmit}>Add</button>
-            </span>
-        );
         return (
             <RedirectionManager redirection={this.state.redirection}>
-                <Modal id={this.props.id} modalTitle={title} modalBody={body} modalFooter={footer}/>
+                {/* <Modal id={this.props.id} modalTitle={title} modalBody={body} modalFooter={footer}/> */}
+                <Modal {...this.props} onHide={this.props.handleClose} centered>
+                    <Modal.Header closeButton>
+                        <Modal.Title>
+                            <h5>Create new Organisation</h5>
+                        </Modal.Title>
+                    </Modal.Header>
+
+                    <Modal.Body>
+                        <form id="newOrgForm">
+                            <div className="form-group">
+                                <label htmlFor="newOrgName">Name</label>
+                                <input required name="name" type="text" value={this.state.formdata.name.value} className="form-control" id="newOrgName" aria-describedby="New Organization name" onChange={this.handleChange}/>
+                                <FormErrorComponent formdata={this.state.formdata}/>
+                            </div>
+                        </form>
+                    </Modal.Body>
+                    
+                    <Modal.Footer>
+                        <button type="button" className="btn btn-secondary" onClick={this.props.handleClose}>Close</button>
+                        <button type="button" className="btn btn-dark" onClick={this.handleSubmit}>Add</button>
+                    </Modal.Footer>
+                </Modal>
             </RedirectionManager>);
     }
 }
